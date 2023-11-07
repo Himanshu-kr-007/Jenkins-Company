@@ -8,29 +8,29 @@ pipeline {
         }
         stage('Build Docker Image'){
             steps{
-                sh 'sudo docker build -t docker.io/himanshukr0612/webserver:${BUILD_TAG} .'
+                sh 'sudo podman build -t docker.io/himanshukr0612/webserver:${BUILD_TAG} .'
             }
         }
         stage('Push Image Into Docker Hub'){
             steps{
                 withCredentials([string(credentialsId: 'DockerHubPassword', variable: 'DockerHubPassword')]) {
-                    sh 'sudo docker login -u himanshukr0612 -p $DockerHubPassword'
+                    sh 'sudo podman login -u himanshukr0612 -p $DockerHubPassword'
                 }
-                sh 'sudo docker push himanshukr0612/webserver:${BUILD_TAG}'
+                sh 'sudo podman push himanshukr0612/webserver:${BUILD_TAG}'
             }
         }
         stage('Deploy Webapp In Dev Environment'){
             steps{
-                sh 'sudo docker rm -f mywebserver'
-                sh 'sudo docker run -d -p 80:80 --name mywebserver  docker.io/himanshukr0612/webserver:${BUILD_TAG}'
+                sh 'sudo podman rm -f mywebserver'
+                sh 'sudo podman run -d -p 80:80 --name mywebserver  docker.io/himanshukr0612/webserver:${BUILD_TAG}'
 
             }
         }
         stage('Launch Container In Testing Environment'){
             steps{
                 sshagent(['Environment-Key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@43.205.128.169 sudo docker rm -f mywebserver"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@43.205.128.169 sudo docker run -d -p 80:80 --name mywebserver docker.io/himanshukr0612/webserver:${BUILD_TAG}"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@43.205.128.169 sudo podman rm -f mywebserver"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@43.205.128.169 sudo podman run -d -p 80:80 --name mywebserver docker.io/himanshukr0612/webserver:${BUILD_TAG}"
                 }
             }
         }
@@ -48,8 +48,8 @@ pipeline {
         stage('Deploy In Prod'){
             steps{
                 sshagent(['Environment-Key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@43.205.128.169 sudo docker rm -f prod"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@43.205.128.169 sudo docker run -d -p 1234:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@43.205.128.169 sudo podman rm -f prod"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@43.205.128.169 sudo podman run -d -p 1234:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
                 }
             }
         }
