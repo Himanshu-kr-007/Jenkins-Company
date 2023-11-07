@@ -17,9 +17,10 @@ pipeline {
  echo 'This is QUALITY ASSESSMENT PHASE'
  }
  }
- stage('PRE - PRODUCTION'){
+  stage('PRE - PRODUCTION'){
  steps{
  echo 'This is PRE - PRODUCTION PHASE'
+ }
  }
  stage('PRODUCTION'){
  steps{
