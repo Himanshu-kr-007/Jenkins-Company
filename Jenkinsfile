@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build Docker Image'){
             steps{
-                sh ' sudo podman build -t docker.io/himanshukr0612/webserver:${BUILD_TAG} .'
+                sh ' sudo podman build -t himanshukr0612/webserver:${BUILD_TAG} .'
             }
         }
         stage('Push Image Into Docker Hub'){
