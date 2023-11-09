@@ -9,7 +9,7 @@ COPY ./index.html /usr/local/apache2/htdocs/
 EXPOSE 80
 
 # Start the httpd server when the container runs
-CMD ["httpd-foreground"]
+CMD ["httpd", "-D", "httpd-foreground"]
 
 # Command to build Docker Image
 # docker build -t webserver:v1 .

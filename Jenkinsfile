@@ -34,8 +34,8 @@ pipeline {
         }
         stage('Launch Container In Testing Environment'){
              steps{
-                sh 'sudo docker rm -f deploy'
-                sh 'sudo docker run -d -p 8080:80 --name mywebserver  docker.io/himanshukr0612/webserver:${BUILD_TAG}'
+                sh 'sudo docker rm -f testserver'
+                sh 'sudo docker run -d -p 8080:80 --name testserver  docker.io/himanshukr0612/webserver:${BUILD_TAG}'
             }
         }
         // stage('Launch Container In Testing Environment'){
@@ -61,7 +61,7 @@ pipeline {
             steps{
                 sshagent(['Environment-Key']) {
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@65.0.168.35 sudo docker rm -f prod"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@65.0.168.35 sudo docker run -d -p 1234:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@65.0.168.35 sudo docker run -d -p 80:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
                 }
             }
         }
