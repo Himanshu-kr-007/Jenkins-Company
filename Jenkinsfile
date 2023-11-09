@@ -65,5 +65,18 @@ pipeline {
                 }
             }
         }
+        stage('Release To Production'){
+            steps{
+                input(message: "Release To Production?")
+            }
+        }
+        stage('Deploy In Prod'){
+            steps{
+                sshagent(['HimanshuTF']) {
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@52.66.237.143 sudo docker rm -f prod"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@52.66.237.143 sudo docker run -d -p 80:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
+                }
+            }
+        }
     }
 }
