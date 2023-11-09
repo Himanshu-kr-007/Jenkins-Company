@@ -1,29 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Adrosonic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+        a img {
+            width: 50px;
         }
 
-        .centered-text {
+        .content {
+            margin: 0px auto;
+            padding: 0;
+            width: 80%;
+            font-family: Arial, sans-serif;
+        }
+        .content h1{
+            font-size: 35px;
             text-align: center;
-            font-size: 36px;
-            font-weight: bolder;
+            color: rgb(176, 176, 25);
         }
-
+        .content p{
+            margin: 10px;
+            font-size: 20px;
+            text-align: justify;
+        }
     </style>
 </head>
+
 <body>
-    <div class="centered-text">
-        Hello, World!
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <img src="https://imgs.search.brave.com/wRCVyWctl_C8qG5ha1Ii4rWRTGSiPJEjj_Y3RKcKruE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudGhlY29tcGFu/eWNoZWNrLmNvbS9j/b21wYW55bG9nby9B/RFJPU09OSUNfZTY0/MmI2ZGMud2VicA"
+                    alt="">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl">Adrosonic</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <a class="mr-5 hover:text-gray-900">Services</a>
+                <a class="mr-5 hover:text-gray-900">Industries</a>
+                <a class="mr-5 hover:text-gray-900">Company</a>
+                <a class="mr-5 hover:text-gray-900">Insight</a>
+                <a class="mr-5 hover:text-gray-900">Contact Us</a>
+            </nav>
+
+        </div>
+    </header>
+    <div class="content">
+
+        <h1>Why ADROSONIC</h1>
+        <p>
+            At ADROSONIC, we are driven by a deep and unwavering commitment to people—our valued employees, trusted partners, loyal customers, and even our customers' customers. Our passion lies in harnessing the power of technology to make a meaningful impact in the lives of individuals and organizations alike. We firmly believe that technology should be an accessible and transformative force for everyone, regardless of their technical proficiency.
+        </p>
+        <p>
+            Our core mission is to provide exceptional professional services that drive your digital transformation journey forward. We do this by leveraging the most advanced and cutting-edge technologies available globally. When you choose ADROSONIC as your partner, you're not just selecting a service provider; you're choosing a collaborator who genuinely cares about the success of your business.
+        </p>
+        <p>
+            We take the time to immerse ourselves in your unique business landscape, gaining a profound understanding of your specific challenges and opportunities. This deep understanding forms the bedrock of our approach, ensuring that every solution we deliver is tailor-made to fit your needs. We believe that true digital transformation is a collaborative endeavor, and we are here to walk this transformative path together with you.
+        </p>
+        <p>
+            Our commitment to excellence extends beyond the realm of technology. We place a premium on fostering long-lasting relationships, built on trust, transparency, and open communication. Our goal is not just to meet your expectations but to consistently exceed them, delivering innovative solutions that drive growth and efficiency in your organization.
+        </p>
+        <p>
+            So, why choose ADROSONIC? Because we are more than just a technology company—we are your dedicated partner on your journey to success. Join us as we embark on the exciting road of digital transformation, and together, we'll turn your challenges into opportunities, your ideas into reality, and your vision into a brighter future.
+        </p>
+        <p>
+          Jenkins, an open-source automation server, plays a pivotal role in DevOps practices, facilitating continuous integration and continuous deployment (CI/CD) pipelines. Seamlessly integrated with AWS services, Jenkins orchestrates the automated testing and deployment of applications on Amazon's cloud infrastructure, enhancing scalability and reliability. Combined with Docker, Jenkins enables the creation of lightweight, portable containers, ensuring consistency across development, testing, and production environments. DevOps teams leverage Terraform, an infrastructure-as-code tool, to define and provision AWS resources, ensuring infrastructure consistency and efficiency. Together, Jenkins, DevOps practices, AWS, Docker, and Terraform form a powerful ecosystem, empowering organizations to automate, streamline, and optimize their software development and deployment lifecycles in a cloud-native environment.
+        </p>
+        
     </div>
 </body>
+<footer class="text-gray-600 body-font">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <img src="https://imgs.search.brave.com/wRCVyWctl_C8qG5ha1Ii4rWRTGSiPJEjj_Y3RKcKruE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudGhlY29tcGFu/eWNoZWNrLmNvbS9j/b21wYW55bG9nby9B/RFJPU09OSUNfZTY0/MmI2ZGMud2VicA">
+        <span class="ml-3 text-xl">Adrosonic</span>
+      </a>
+      <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2013 Adrosonic IT Consultancy Pvt Ltd —
+        <a href="https://www.linkedin.com/company/adrosonic/" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@Adrosonic</a>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <a class="text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+            <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+            <circle cx="4" cy="4" r="2" stroke="none"></circle>
+          </svg>
+        </a>
+      </span>
+    </div>
+  </footer>
 </html>
