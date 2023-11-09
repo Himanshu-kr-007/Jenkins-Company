@@ -73,8 +73,8 @@ pipeline {
         stage('Deploy In Live'){
             steps{
                 sshagent(['HimanshuTF']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@15.207.19.234 sudo docker rm -f prod"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@15.207.19.234 sudo docker run -d -p 80:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.100.202 sudo docker rm -f prod"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.100.202 sudo docker run -d -p 80:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
                 }
             }
         }
