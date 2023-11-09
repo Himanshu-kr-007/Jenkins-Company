@@ -35,7 +35,7 @@ pipeline {
         stage('Launch Container In Testing Environment'){
              steps{
                 sh 'sudo docker rm -f testserver'
-                sh 'sudo docker run -d -p 8080:80 --name testserver  docker.io/himanshukr0612/webserver:${BUILD_TAG}'
+                sh 'sudo docker run -d -p 8081:80 --name testserver  docker.io/himanshukr0612/webserver:${BUILD_TAG}'
             }
         }
         // stage('Launch Container In Testing Environment'){
@@ -48,8 +48,8 @@ pipeline {
         // }
         stage('Testing Phase'){
             steps{
-                sh 'curl -sleep http://65.0.168.35:8080/ | grep DevOps'
-                sh 'curl -sleep http://65.0.168.35:8080/ | grep Jenkins'
+                sh 'curl -sleep http://65.0.168.35:8081/ | grep DevOps'
+                sh 'curl -sleep http://65.0.168.35:8081/ | grep Jenkins'
             }
         }
         stage('Release To Production'){
