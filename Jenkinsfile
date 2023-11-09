@@ -65,12 +65,12 @@ pipeline {
                 }
             }
         }
-        stage('Release To Production'){
+        stage('LIVE'){
             steps{
-                input(message: "Release To Production?")
+                input(message: "Do You want to Make this Code Live?")
             }
         }
-        stage('Deploy In Prod'){
+        stage('Deploy In Live'){
             steps{
                 sshagent(['HimanshuTF']) {
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@52.66.237.143 sudo docker rm -f prod"
