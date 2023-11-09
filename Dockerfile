@@ -1,5 +1,5 @@
 # Use the official httpd image as the base image
-FROM docker.io/library/httpd:latest
+FROM httpd:latest
 # Copy your website files to the image
 COPY ./index.html /usr/local/apache2/htdocs/
 # COPY ./index.html /usr/local/apache2/htdocs/
