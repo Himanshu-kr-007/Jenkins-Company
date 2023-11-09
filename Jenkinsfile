@@ -8,42 +8,42 @@ pipeline {
         }
         stage('Build Docker Image'){
             steps{
-                script{
-                    def imageTag = "himanshukr0612/webserver:${BUILD_TAG}"
-                    sh "sudo docker build -t $imageTag ."
-                    sh "sudo docker tag $imageTag $imageTag"
-                    sh "sudo docker push $imageTag"
-                }
-                // sh ' sudo podman build -t himanshukr0612/webserver:${BUILD_TAG} .'
+                sh ' sudo docker build -t himanshukr0612/webserver:${BUILD_TAG} .'
+            //     script{
+            //         def imageTag = "himanshukr0612/webserver:${BUILD_TAG}"
+            //         sh "sudo docker build -t $imageTag ."
+            //         sh "sudo docker tag $imageTag $imageTag"
+            //         sh "sudo docker push $imageTag"
+            //     }
             }
         }
         stage('Push Image Into Docker Hub'){
             steps{
                 withCredentials([string(credentialsId: 'DockerHubPassword', variable: 'DockerHubPassword')]) {
-                    sh 'sudo podman login -u himanshukr0612 -p $DockerHubPassword'
+                    sh 'sudo docker login -u himanshukr0612 -p $DockerHubPassword'
                 }
-                sh 'sudo podman push himanshukr0612/webserver:${BUILD_TAG}'
+                sh 'sudo docker push himanshukr0612/webserver:${BUILD_TAG}'
             }
         }
         stage('Deploy Webapp In Dev Environment'){
             steps{
-                sh 'sudo podman rm -f mywebserver'
-                sh 'sudo podman run -d -p 80:80 --name mywebserver  docker.io/himanshukr0612/webserver:${BUILD_TAG}'
+                sh 'sudo docker rm -f mywebserver'
+                sh 'sudo docker run -d -p 80:80 --name mywebserver  docker.io/himanshukr0612/webserver:${BUILD_TAG}'
 
             }
         }
         stage('Launch Container In Testing Environment'){
             steps{
                 sshagent(['Environment-Key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.227.56 sudo  podman rm -f mywebserver"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.227.56 sudo podman run -d -p 80:80 --name mywebserver docker.io/himanshukr0612/webserver:${BUILD_TAG}"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@65.0.168.35 sudo  docker rm -f mywebserver"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@65.0.168.35 sudo docker run -d -p 80:80 --name mywebserver docker.io/himanshukr0612/webserver:${BUILD_TAG}"
                 }
             }
         }
         stage('Testing Phase'){
             steps{
-                sh 'curl -sleep http://13.233.227.56:80/ | grep DevOps'
-                sh 'curl -sleep http://13.233.227.56:80/ | grep Jenkins'
+                sh 'curl -sleep http://65.0.168.35:80/ | grep DevOps'
+                sh 'curl -sleep http://65.0.168.35:80/ | grep Jenkins'
             }
         }
         stage('Release To Production'){
@@ -54,8 +54,8 @@ pipeline {
         stage('Deploy In Prod'){
             steps{
                 sshagent(['Environment-Key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.227.56 sudo podman rm -f prod"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.227.56 sudo podman run -d -p 1234:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@65.0.168.35 sudo docker rm -f prod"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@65.0.168.35 sudo docker run -d -p 1234:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
                 }
             }
         }
