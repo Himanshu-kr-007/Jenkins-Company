@@ -59,7 +59,7 @@ pipeline {
         }
         stage('Deploy In Prod'){
             steps{
-                sshagent(['Environment-Key']) {
+                sshagent(['Jenkins-Main']) {
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@65.0.168.35 sudo docker rm -f prod"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@65.0.168.35 sudo docker run -d -p 80:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
                 }
