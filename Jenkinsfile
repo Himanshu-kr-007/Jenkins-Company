@@ -14,7 +14,7 @@ pipeline {
                     sh "sudo docker build -t $imageTag ."
             //         sh "sudo docker tag $imageTag $imageTag"
                     sh "sudo docker push $imageTag"
-            //     }
+                }
             }
         }
         stage('Push Image Into Docker Hub'){
