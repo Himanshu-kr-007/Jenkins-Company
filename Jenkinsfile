@@ -8,13 +8,13 @@ pipeline {
         }
         stage('Build Docker Image'){
             steps{
-                // sh ' sudo docker build -t himanshukr0612/webserver:${BUILD_TAG} .'
-                script{
-                    def imageTag = "himanshukr0612/webserver:${BUILD_TAG}"
-                    sh "sudo docker build -t $imageTag ."
-            //         sh "sudo docker tag $imageTag $imageTag"
-                    sh "sudo docker push $imageTag"
-                }
+                sh ' sudo docker build --load -t himanshukr0612/webserver:${BUILD_TAG} .'
+                // script{
+                    // def imageTag = "himanshukr0612/webserver:${BUILD_TAG}"
+                    // sh "sudo docker build -t $imageTag ."
+                    // sh "sudo docker tag $imageTag $imageTag"
+                    // sh "sudo docker push $imageTag"
+                // }
             }
         }
         stage('Push Image Into Docker Hub'){
