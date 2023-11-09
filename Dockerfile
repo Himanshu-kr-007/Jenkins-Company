@@ -1,5 +1,5 @@
 # Use the official httpd image as the base image
-FROM httpd:latest
+FROM httpd
 # Copy your website files to the image
 COPY ./index.html /usr/local/apache2/htdocs/
 # COPY ./index.html /usr/local/apache2/htdocs/
