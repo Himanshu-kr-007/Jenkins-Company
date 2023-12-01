@@ -41,15 +41,15 @@ pipeline {
         // stage('Launch Container In Testing Environment'){
         //     steps{
         //         sshagent(['Environment-Key']) {
-        //             sh "ssh -o StrictHostKeyChecking=no ec2-user@13.234.32.204 sudo  docker rm -f mywebserver"
-        //             sh "ssh -o StrictHostKeyChecking=no ec2-user@13.234.32.204 sudo docker run -d -p 80:80 --name mywebserver docker.io/himanshukr0612/webserver:${BUILD_TAG}"
+        //             sh "ssh -o StrictHostKeyChecking=no ec2-user@13.127.65.79 sudo  docker rm -f mywebserver"
+        //             sh "ssh -o StrictHostKeyChecking=no ec2-user@13.127.65.79 sudo docker run -d -p 80:80 --name mywebserver docker.io/himanshukr0612/webserver:${BUILD_TAG}"
         //         }
         //     }
         // }
         stage('Testing Phase'){
             steps{
-                sh 'curl -sleep http://13.234.32.204:8081/ | grep DevOps'
-                sh 'curl -sleep http://13.234.32.204:8081/ | grep Jenkins'
+                sh 'curl -sleep http://13.127.65.79:8081/ | grep DevOps'
+                sh 'curl -sleep http://13.127.65.79:8081/ | grep Jenkins'
             }
         }
         stage('Release To Production'){
@@ -60,8 +60,8 @@ pipeline {
         stage('Deploy In Prod'){
             steps{
                 sshagent(['Jenkins-Main']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.234.32.204 sudo docker rm -f prod"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.234.32.204 sudo docker run -d -p 80:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.127.65.79 sudo docker rm -f prod"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.127.65.79 sudo docker run -d -p 80:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
                 }
             }
         }
@@ -73,8 +73,8 @@ pipeline {
         stage('Deploy In Live'){
             steps{
                 sshagent(['HimanshuTF']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@43.205.203.63 sudo docker rm -f prod"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@43.205.203.63 sudo docker run -d -p 80:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.178.7 sudo docker rm -f prod"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.178.7 sudo docker run -d -p 80:80 --name prod docker.io/himanshukr0612/webserver:${BUILD_TAG}"
                 }
             }
         }
